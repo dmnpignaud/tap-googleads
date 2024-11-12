@@ -49,16 +49,7 @@ class TapGoogleAds(Tap):
         required=True,
         secret=True,
     )
-    _end_date = datetime.now(timezone.utc).date()
-    _start_date = _end_date - timedelta(days=90)
-
-    # TODO: Add Descriptions
-    config_jsonschema = th.PropertiesList(
-        th.Property(
-            "oauth_credentials",
-            th.OneOf(
-                th.ObjectType(
-                    th.Property(
+    _client_properties = [th.Property(
                         "client_id",
                         th.StringType,
                         required=True,
@@ -68,8 +59,23 @@ class TapGoogleAds(Tap):
                         th.StringType,
                         required=True,
                         secret=True,
-                    ),
-                    _refresh_token,
+                    )]
+    service_account_type = th.Property("type", th.Constant("service_account"), required=True)
+
+
+    _end_date = datetime.now(timezone.utc).date()
+    _start_date = _end_date - timedelta(days=90)
+
+    # TODO: Add Descriptions
+    config_jsonschema = th.PropertiesList(
+        th.Property(
+            "oauth_credentials",
+            th.OneOf(
+                th.ObjectType(
+                    *(_client_properties + [service_account_type]),
+                ),
+                th.ObjectType(
+                    *(_client_properties + [_refresh_token]),
                 ),
                 th.ObjectType(
                     th.Property(
