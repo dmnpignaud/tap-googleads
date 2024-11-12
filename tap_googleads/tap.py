@@ -85,7 +85,7 @@ class TapGoogleAds(Tap):
                     _refresh_token,
                 ),
             ),
-            required=True,
+            required=False,
         ),
         th.Property(
             "developer_token",
