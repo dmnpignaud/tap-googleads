@@ -46,7 +46,7 @@ class TapGoogleAds(Tap):
     _refresh_token = th.Property(
         "refresh_token",
         th.StringType,
-        required=True,
+        required=False,
         secret=True,
     )
     _client_properties = [th.Property(
