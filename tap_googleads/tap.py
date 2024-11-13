@@ -70,15 +70,13 @@ class TapGoogleAds(Tap):
         th.Property(
             "refresh_proxy_url",
             th.StringType,
-            required=True,
+            required=False,
         ),
         th.Property(
             "refresh_proxy_url_auth",
             th.StringType,
-            secret=True,
+            secret=False,
         ),
-
-
         th.Property(
             "developer_token",
             th.StringType,
