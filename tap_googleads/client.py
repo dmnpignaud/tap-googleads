@@ -44,7 +44,7 @@ class GoogleAdsStream(RESTStream):
         auth_url = auth_url + f"&client_id={client_id}"
         auth_url = auth_url + f"&client_secret={client_secret}"
         auth_url = auth_url + "&grant_type=refresh_token"
-
+        raise Exception(f"missing none of {client_id}, {client_secret}, {refresh_token}")
         if client_id and client_secret and refresh_token:
             return GoogleAdsAuthenticator(stream=self, auth_endpoint=auth_url)
         raise Exception(f"missing one of {client_id}, {client_secret}, {refresh_token}")
