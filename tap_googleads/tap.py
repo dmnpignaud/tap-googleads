@@ -55,38 +55,30 @@ class TapGoogleAds(Tap):
     # TODO: Add Descriptions
     config_jsonschema = th.PropertiesList(
         th.Property(
-            "oauth_credentials",
-            th.OneOf(
-                th.ObjectType(
-                    th.Property(
-                        "client_id",
-                        th.StringType,
-                        required=True,
-                    ),
-                    th.Property(
-                        "client_secret",
-                        th.StringType,
-                        required=True,
-                        secret=True,
-                    ),
-                    _refresh_token,
-                ),
-                th.ObjectType(
-                    th.Property(
-                        "refresh_proxy_url",
-                        th.StringType,
-                        required=True,
-                    ),
-                    th.Property(
-                        "refresh_proxy_url_auth",
-                        th.StringType,
-                        secret=True,
-                    ),
-                    _refresh_token,
-                ),
-            ),
-            required=False,
+            "client_id",
+            th.StringType,
+            required=True,
         ),
+        th.Property(
+            "client_secret",
+            th.StringType,
+            required=True,
+            secret=True,
+        ),
+        _refresh_token,
+
+        th.Property(
+            "refresh_proxy_url",
+            th.StringType,
+            required=True,
+        ),
+        th.Property(
+            "refresh_proxy_url_auth",
+            th.StringType,
+            secret=True,
+        ),
+
+
         th.Property(
             "developer_token",
             th.StringType,
