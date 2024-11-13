@@ -47,7 +47,7 @@ class GoogleAdsStream(RESTStream):
 
         if client_id and client_secret and refresh_token:
             return GoogleAdsAuthenticator(stream=self, auth_endpoint=auth_url)
-
+        raise Exception(f"missing one of {client_id}, {client_secret}, {refresh_token}")
         oauth_credentials = self.config.get("oauth_credentials", {})
 
         auth_body = {}
